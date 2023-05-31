@@ -33,4 +33,4 @@ FundVerse is an open-source project
 
 ## Acknowledgments
 
-Iwould like to thank the open-source community for their invaluable contributions and inspiration.
+I would like to thank the open-source community for their invaluable contributions and inspiration.
