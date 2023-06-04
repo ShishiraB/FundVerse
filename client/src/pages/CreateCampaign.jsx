@@ -26,11 +26,13 @@ const CreateCampaign = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    // console.log(form);
     checkIfImage(form.image, async (exists) => {
       if(exists) {
         setIsLoading(true)
+        console.log("above")
         await createCampaign({ ...form, target: ethers.utils.parseUnits(form.target, 18)})
+        console.log("below")
         setIsLoading(false);
         navigate('/');
       } else {

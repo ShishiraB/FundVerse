@@ -11,21 +11,21 @@ const StateContext = createContext();
 export const StateContextProvider = ({ children }) => {
   const sdk = new ThirdwebSDK(Sepolia);
   const {contract} = sdk.getContract("0x522Aa905359fC39da64f930fdeD3CBE78160ccef");
-  const { mutateAsync: createCampaign } = useContractWrite(contract, 'createCampaign');
+  const { mutateAsync: createCampaign} = useContractWrite(contract, "createCampaign");
 
   const address = useAddress();
   const connect = useMetamask();
 
   const publishCampaign = async (form) => {
     try {
-      const data = await contract.createCampaign(
+      const data = await createCampaign({ args:[
         address, // owner
         form.title, // title
         form.description, // description
         form.target,
         new Date(form.deadline).getTime(), // deadline,
         form.image
-      )
+    ]})
       console.log('contract call success', data);
     } catch (error) {
       console.log('contract call failure', error);
