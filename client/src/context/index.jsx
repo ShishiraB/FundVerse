@@ -10,7 +10,7 @@ const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
   const sdk = new ThirdwebSDK(Sepolia);
-  const {contract} = sdk.getContract("0x522Aa905359fC39da64f930fdeD3CBE78160ccef");
+  const {contract} = sdk.getContract("0xaCC0Bf2dE2d458A409b07Ad5e146a87696972a38");
   const { mutateAsync: createCampaign} = useContractWrite(contract, "createCampaign");
 
   const address = useAddress();
