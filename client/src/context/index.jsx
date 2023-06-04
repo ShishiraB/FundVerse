@@ -1,6 +1,4 @@
 import React, { useContext, createContext } from 'react';
-import { Sepolia } from "@thirdweb-dev/chains";
-import { ThirdwebSDK } from "@thirdweb-dev/sdk/evm";
 
 import { useAddress, useContract, useMetamask, useContractWrite } from '@thirdweb-dev/react';
 import { ethers } from 'ethers';
@@ -9,26 +7,26 @@ import { EditionMetadataWithOwnerOutputSchema } from '@thirdweb-dev/sdk';
 const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
-  const sdk = new ThirdwebSDK(Sepolia);
-  const {contract} = sdk.getContract("0xaCC0Bf2dE2d458A409b07Ad5e146a87696972a38");
-  const { mutateAsync: createCampaign} = useContractWrite(contract, "createCampaign");
+  const { contract } = useContract('0x327A41299509788D2e2E2EBEc4b389dFb33559b5');
+  const { mutateAsync: createCampaign } = useContractWrite(contract, 'createCampaign');
 
   const address = useAddress();
   const connect = useMetamask();
 
   const publishCampaign = async (form) => {
     try {
-      const data = await createCampaign(
-        address, // owner
-        form.title, // title
-        form.description, // description
+      const data = await createCampaign({ args: [
+        address,
+        form.title,
+        form.description,
         form.target,
-        new Date(form.deadline).getTime(), // deadline,
+        new Date(form.deadline).getTime(),
         form.image
-    )
-      console.log('contract call success', data);
+      ] });
+
+      console.log("contract call success", data)
     } catch (error) {
-      console.log('contract call failure', error);
+      console.log("contract call failure", error)
     }
   }
 

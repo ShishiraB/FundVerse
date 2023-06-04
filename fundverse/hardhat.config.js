@@ -33,11 +33,11 @@ module.exports = {
   },
   solidity: {
     version: "0.8.17",
-    defaultNetwork: 'sepolia',
+    defaultNetwork: 'polygon_mumbai',
     networks: {
       hardhat: {},
-      sepolia: {
-        url: 'https://rpc.ankr.com/eth_sepolia',
+      polygon_mumbai: {
+        url: 'https://rpc-mumbai.maticvigil.com',
         accounts: ['0x${process.env.PRIVATE_KEY}']
       }
     },
