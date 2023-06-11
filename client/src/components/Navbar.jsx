@@ -79,7 +79,9 @@ const Navbar = () => {
       {/* Small screen navigation */}
       <div className="sm:hidden flex justify-between items-center relative">
         <div className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
+        <Link to="/">
           <img src={logo} alt="user" className="w-[60%] h-[60%] object-contain" />
+        </Link>
         </div>
 
         <img
@@ -102,12 +104,14 @@ const Navbar = () => {
                     key={link.name}
                     className={`flex p-4 ${isActive === link.name && 'bg-[#3a3a43]'}`}
                     onClick={() => {
-                      setIsActive(link.name);
-                      setToggleDrawer(false);
-                      if (link.name === 'logout') {
-                        handleLogout();
-                      } else {
-                        navigate(link.link);
+                      if (!link.disabled) {
+                        setIsActive(link.name);
+                        setToggleDrawer(false);
+                        if (link.name === 'logout') {
+                          handleLogout();
+                        } else {
+                          navigate(link.link);
+                        }
                       }
                     }}
                   >
