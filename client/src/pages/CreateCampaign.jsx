@@ -29,9 +29,9 @@ const CreateCampaign = () => {
     checkIfImage(form.image, async (exists) => {
       if(exists) {
         setIsLoading(true)
-        console.log("above")
+        // console.log("above")
         await createCampaign({ ...form, target: ethers.utils.parseUnits(form.target, 18)})
-        console.log("below")
+        // console.log("below")
         setIsLoading(false);
         navigate('/');
       } else {
@@ -108,7 +108,7 @@ const CreateCampaign = () => {
             <CustomButton 
               btnType="submit"
               title="Submit new campaign"
-              styles="bg-[#1dc071]"
+              styles="bg-[#8c6dfd]"
             />
           </div>
       </form>

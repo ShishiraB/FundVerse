@@ -1,11 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import FundCard from './FundCard';
 import { loader } from '../assets';
 
 const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isProfilePage = location.pathname === '/profile';
 
   const handleNavigate = (campaign) => {
     navigate(`/campaign-details/${campaign.title}`, { state: campaign });
@@ -24,7 +26,9 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
 
         {!isLoading && campaigns.length === 0 && (
           <p className="font-epilogue font-semibold text-[14px] leading-[30px] text-[#818183]">
-            You have not created any campaigns yet
+            {isProfilePage
+              ? 'You have not created any campaigns yet'
+              : 'Fetching the campaigns'}
           </p>
         )}
 

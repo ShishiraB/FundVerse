@@ -1,8 +1,7 @@
 import React, { useContext, createContext } from 'react';
 
-import { useAddress, useContract, useMetamask, useContractWrite } from '@thirdweb-dev/react';
+import { useAddress, useContract, useMetamask, useContractWrite, useDisconnect } from '@thirdweb-dev/react';
 import { ethers } from 'ethers';
-import { EditionMetadataWithOwnerOutputSchema } from '@thirdweb-dev/sdk';
 
 const StateContext = createContext();
 
@@ -12,6 +11,7 @@ export const StateContextProvider = ({ children }) => {
 
   const address = useAddress();
   const connect = useMetamask();
+  const disconnect = useDisconnect();
 
   const publishCampaign = async (form) => {
     try {
@@ -76,6 +76,18 @@ export const StateContextProvider = ({ children }) => {
     return parsedDonations;
   }
 
+  const logoutFromMetaMask = async () => {
+    try {
+      await window.ethereum.request({
+        method: 'eth_logout'
+      });
+      console.log('Logged out from MetaMask');
+      // Perform any additional logout-related tasks in your application
+    } catch (error) {
+      console.error('Error occurred while logging out from MetaMask:', error);
+      // Handle the error as per your requirements
+    }
+  }
 
   return (
     <StateContext.Provider
@@ -83,11 +95,13 @@ export const StateContextProvider = ({ children }) => {
         address,
         contract,
         connect,
+        disconnect,
         createCampaign: publishCampaign,
         getCampaigns,
         getUserCampaigns,
         donate,
-        getDonations
+        getDonations,
+        logoutFromMetaMask
       }}
     >
       {children}

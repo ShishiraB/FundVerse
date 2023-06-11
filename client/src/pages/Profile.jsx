@@ -12,7 +12,7 @@ const Profile = () => {
   const fetchCampaigns = async () => {
     setIsLoading(true);
     const data = await getUserCampaigns();
-    setCampaigns(data);
+    setCampaigns(data.reverse());
     setIsLoading(false);
   }
 
