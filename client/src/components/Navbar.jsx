@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useStateContext } from '../context';
 import { CustomButton } from './';
-import { logo, menu, search, thirdweb } from '../assets';
+import { ld, menu, search, thirdweb } from '../assets';
 import { navlinks } from '../constants';
 
 const Navbar = () => {
@@ -80,7 +80,7 @@ const Navbar = () => {
       <div className="sm:hidden flex justify-between items-center relative">
         <div className="w-[40px] h-[40px] rounded-[10px] bg-[#2c2f32] flex justify-center items-center cursor-pointer">
         <Link to="/">
-          <img src={logo} alt="user" className="w-[60%] h-[60%] object-contain" />
+          <img src={ld} alt="user" className="w-[100%] h-[100%] object-contain" />
         </Link>
         </div>
 

@@ -10,7 +10,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 6000);
+    }, 3000);
   }, []);
 
   if (isLoading) {
