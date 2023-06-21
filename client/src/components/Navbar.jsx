@@ -98,7 +98,7 @@ const Navbar = () => {
         >
           <ul className="mb-4">
             {navlinks.map((link) => {
-              if (address || link.name === 'dashboard') {
+              if (address || link.name === 'dashboard' || link.name === 'github') {
                 return (
                   <li
                     key={link.name}
@@ -109,12 +109,15 @@ const Navbar = () => {
                         setToggleDrawer(false);
                         if (link.name === 'logout') {
                           handleLogout();
+                        } else if (link.name === 'github') {
+                          window.open(link.externalLink, '_blank');
                         } else {
                           navigate(link.link);
                         }
                       }
                     }}
                   >
+                    
                     <img
                       src={link.imgUrl}
                       alt={link.name}

@@ -10,7 +10,6 @@ import './index.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  //please add Sepolia number in your ChainId file
   <ThirdwebProvider activeChain="mumbai"> 
     <Router>
       <StateContextProvider>
